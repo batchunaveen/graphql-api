@@ -1,0 +1,34 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.naveen.projects'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repo.spring.io/ui/native/libs-milestone/org/springframework/experimental/graphql-spring-boot-starter/1.0.0-M2"
+    }
+    maven {
+        url "https://repo.spring.io/milestone"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation group: 'org.springframework.experimental', name: 'graphql-spring-boot-starter', version: '1.0.0-M2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'io.r2dbc:r2dbc-h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+    useJUnitPlatform()
+}
