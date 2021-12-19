@@ -16,18 +16,19 @@ repositories {
     maven {
         url "https://repo.spring.io/milestone"
     }
+
 }
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation group: 'org.springframework.experimental', name: 'graphql-spring-boot-starter', version: '1.0.0-M2'
-    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
-    runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'io.r2dbc:r2dbc-h2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
 }
+
 
 test {
     useJUnitPlatform()

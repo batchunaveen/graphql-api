@@ -1,18 +1,7 @@
 package com.naveen.projects.graphqlapi;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import org.springframework.graphql.data.method.annotation.*;
-import org.springframework.stereotype.Controller;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.stream.Stream;
 
 @SpringBootApplication
 public class GraphqlApiApplication {
@@ -22,11 +11,11 @@ public class GraphqlApiApplication {
     }
 
 }
-
+/*
 @Controller
 class CustomerGraphqlController {
 
-    private final CustomerRepository customerRepository;
+  private final CustomerRepository customerRepository;
 
     CustomerGraphqlController(CustomerRepository repository) {
         this.customerRepository = repository;
@@ -61,7 +50,7 @@ class CustomerGraphqlController {
         return this.customerRepository.findById(customerId)
                 .flatMapMany(customer -> {
                     var stream = Stream.generate(
-                            () -> new CustomerEvent(customer, Math.random() > 5 ? CustomerEventType.DELETED: CustomerEventType.UPDATED));
+                            () -> new CustomerEvent(customer, Math.random() > 100 ? CustomerEventType.DELETED: CustomerEventType.UPDATED));
                     return Flux.fromStream( stream);
                 })
                 .delayElements(Duration.ofSeconds(1))
@@ -69,22 +58,5 @@ class CustomerGraphqlController {
     }
 
 }
+*/
 
-interface CustomerRepository extends ReactiveCrudRepository<Customer, Integer> {
-
-    Flux<Customer> findByName(String name);
-}
-
-enum CustomerEventType {
-    UPDATED,
-    DELETED
-}
-record CustomerEvent (Customer customer, CustomerEventType eventType) {
-
-}
-record Order (Integer id, Integer customerId) {
-
-}
-record Customer(@JsonProperty("id") @Id Integer id,@JsonProperty("name") String name) {
-
-}
