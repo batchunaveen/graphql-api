@@ -1,15 +1,5 @@
 
 function fetchingData() {
-    var schema = buildSchema(`
-        type Cards {
-        id: int,
-        type: int,
-        from: string,
-        back: string
-        }
-        
-    `)
-
       var query = `query { 
         cards {  
            id    
